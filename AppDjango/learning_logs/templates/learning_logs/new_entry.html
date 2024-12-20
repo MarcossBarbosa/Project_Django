@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+</head>
+<body>
+    {% block content %}
+       <a href="{% url 'topics' %}">Voltar para topicos</a>
+      <div>
+        <p><a href="{% url 'topic' topic.id %}">{{ topic }}</a></p>
+        <p>Adicione uma nova entrada:</p>
+        <form action="{% url 'new_entry' topic.id %}" method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button name="submit" >Adicione um novo conteúdo</button>
+        </form>
+      </div>
+    {% endblock content %}
+</body>
+</html>

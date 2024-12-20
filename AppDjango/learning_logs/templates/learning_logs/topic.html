@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+</head>
+<body>
+
+    {% block content %}
+    <div>
+        <a href="{% url 'topics'%}">Voltar para os topicos</a>
+        <div>
+
+            <h3>Topico: {{ topic }}</h3>
+
+            <p>Entradas:</p>
+            <p><a href="{% url 'new_entry' topic.id %}"> Adicionar novas entradas </a></p>
+
+            <ul>
+                {% for entry in entries %}
+                    <li>
+                        <p>{{ entry.date_added | date:"M d, Y H:i" }}</p>
+                        <p>{{ entry.text | linebreaks }}</p>
+                    </li>
+                {% empty %}
+                    <li>Não há registros</li>
+                {% endfor %}
+            </ul>
+
+        </div>
+    </div>
+    {% endblock content %}
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        {% block content%}
+            <a href="{% url 'char' %}">
+                <h1>Voltar para home</h1>
+            </a>
+            <h4>Topicos:</h4>
+            <ul>
+                {% for topic in topics%}
+                <li>
+                   <a href="{% url 'topic' topic.id %}"> {{ topic }}</a>
+                </li>
+                {% empty %}
+                <li>
+                    Não há tópicos adicionados
+                </li>
+                {% endfor %}
+            </ul>
+
+            <a href="{% url 'new_topics' %}">Adicionar Novos topicos</a>
+        {% endblock content%}
+    </div>
+</body>
+</html>
